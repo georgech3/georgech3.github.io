@@ -63,6 +63,10 @@ License:        You may not reuse or redistribute this framework
     49. Calendar
 */ 
 
+/*uterus*/
+.uterus{
+	*margin:0px auto;
+}
 
 /*	1. Reset  */ 
 
@@ -3004,6 +3008,10 @@ table tr:hover td{
 #content {
 	background-color:#FFFFFF;
 	overflow-x:hidden;
+}
+
+.babyposition {
+	background-color:#ffe0bd;
 }
 
 /* Styles for fading out the drawer content in the "Expanding" demo */
