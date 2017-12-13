@@ -1,4 +1,3 @@
-# HealthBankApp
-Static App (web in bootstrap) demo for health bank race in Taiwan
+Demo app for current project.
 
 View the site now: https://georgech3.github.io
