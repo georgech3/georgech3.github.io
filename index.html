@@ -253,6 +253,17 @@
         background-size: 100% 100%;
         background-repeat: no-repeat;
     }
+    .wrong {
+        background-image: url('img/level-select/wrong.png');
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+    }
+
+    .locked {
+        background-image: url('img/level-select/locked.png');
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+    }
 
     #game-process-Q {
         background-image: url('img/game-screen/Q.png');
@@ -399,7 +410,8 @@
         line-height: 200%;
         font-size: 19px;
     }
-      audio {
+
+    audio {
         display: none;
     }
     </style>
@@ -451,7 +463,7 @@
     <script type="text/javascript" src="js/levels.js"></script>
     <script type="text/javascript">
     var PageNumber = 1;
-    var LevelState = [1, 2, 1, 1, 1, 1, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    var LevelState = [1, 2, 1, 1, 1, 1, 2, 2, 0, 0, 3, 3, 3, 3, 3, 3, 3, 3];
 
     $("#to-index-button").click(function() {
         $("#cover-logo").addClass("up");
@@ -547,7 +559,9 @@
                 $('#' + CurrentLevel).addClass('correct');
             } else if (LevelState[i] == 2) {
                 $('#' + CurrentLevel).addClass('wrong');
-            }
+            } else if (LevelState[i] == 3) {
+                $('#' + CurrentLevel).addClass('locked');
+            };
             var PageSequence = (CurrentLevel % 9);
             var PageSequenceCol = PageSequence % 3;
 
@@ -628,6 +642,7 @@
                     $(this).toggleClass('checked');
                 });
                 $("#game-process-option-send").off().click(function() {
+                    //紀錄結果->換場景-> 出結果文字->回到目錄->更新鍋子！（remove->create！）
                     var CheckedItemNumber = $(".checked").length;
                     if (CheckedItemNumber == 0) {
                         alert("國王需要您的協助、選一個選項吧！")
@@ -660,19 +675,6 @@
             }
             if (SceneNumber < 4) { NextScene(PicType, ++SceneNumber, CTBasic) };
         });
-    };
-
-    function GameResult(Result, CurrentLevel) {
-        //紀錄結果->換場景-> 出結果文字->回到目錄->更新鍋子！（remove->create！）
-        if (Result) {
-            LevelState[CurrentLevel - 1] = 1;
-            ChangeBackgound('game-screen/right')
-
-        } else {
-            LevelState[CurrentLevel - 1] = 2;
-            ChangeBackgound('game-screen/wrong')
-
-        }
     };
 
     function PlayMusic(MusicName) {
