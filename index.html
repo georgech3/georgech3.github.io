@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <title>運動平台</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Condensed">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-alpha.3/css/materialize.min.css">
+    <script type="text/javascript" src="js/firebase.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+    <style type="text/css">
+    html,
+    body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    @media only screen and (min-width: 0px) {
+        .story {
+            height: 220%;
+        }
+    }
+
+    @media only screen and (min-width: 350px) {
+        .story {
+            height: 210%;
+        }
+    }
+
+    @media only screen and (min-width: 370px) {
+        .story-big {
+            height: 180%;
+        }
+        .story-small {
+            height: 150%;
+        }
+    }
+
+    @media only screen and (min-width: 400px) {
+        .story {
+            height: 210%;
+        }
+    }
+
+    @media screen and (min-width: 500px) {
+        .story {
+            height: 200%;
+        }
+    }
+
+    @media screen and (min-width: 600px) {
+        .story {
+            height: 250%;
+        }
+    }
+
+    @media screen and (min-width: 700px) {
+        .story-big {
+            height: 280%;
+        }
+        .story-small {
+            height: 330%;
+        }
+    }
+
+    @media screen and (min-width: 800px) {
+        .story-big {
+            height: 310%;
+        }
+        .story-small {
+            height: 310%;
+        }
+    }
+
+
+    #game-background {
+        max-width: 100%;
+        /*height: 100%;*/
+        /*max-height: 100%;*/
+        margin: 0;
+        padding: 0;
+        background-image: url('img/Cover.png');
+        background-size: 100% 100%;
+        background-repeat: repeat-x;
+        position: relative;
+        /*overflow-y: hidden;*/
+    }
+
+    .height100 {
+        height: 100%;
+    }
+
+    #to-index-button {
+        position: absolute;
+        width: 36%;
+        max-height: 100%;
+        margin: 0;
+        padding: 0;
+        left: 33%;
+        top: 58%;
+    }
+
+    .game-menu-option {
+        width: 46%;
+        height: 6%;
+        left: 27%;
+        position: absolute;
+    }
+
+    #option1 {
+        top: 39%;
+    }
+
+    #option2 {
+        top: 46%;
+    }
+
+    #option3 {
+        top: 54%;
+    }
+
+    .backmenu {
+        position: fixed;
+        bottom: 2%;
+        right: 0px;
+        width: 25%;
+        height: 8%;
+    }
+
+    #o1-menu {
+        background: url('img/level-select/game-back-menu.png');
+        background-size: 100% 100%;
+        position: absolute;
+        bottom: 13%;
+        left: 40%;
+        width: 21%;
+        height: 4.5%;
+    }
+
+    #cover-logo {
+        /*width: 45vw;*/
+        position: absolute;
+        /*position: relative;*/
+        left: 20%;
+        width: 60%;
+        height: 32%;
+    }
+
+    .cover-logo {
+        top: 23%;
+    }
+
+    .index-logo {
+        top: 6%;
+    }
+
+    .up {
+        animation: drive;
+        animation-duration: 1s;
+    }
+
+    @keyframes drive {
+        0% {
+            top: 23%;
+        }
+        100% {
+            top: 6%;
+        }
+    }
+
+    .upper {
+        top: 3%;
+    }
+
+    .middle-y {
+        top: 27.8%;
+    }
+
+    .lower {
+        top: 52.6%;
+    }
+
+    .right {
+        right: 8.5%;
+    }
+
+    .middle-x {
+        right: 40%;
+    }
+
+    .left {
+        left: 8.5%;
+    }
+
+    .bottom {
+        bottom: 13%;
+    }
+
+    .arrow {
+        position: absolute;
+        height: 5.2%;
+        width: 7.9%;
+    }
+
+    .bar {
+        position: absolute;
+        left: 2%;
+        width: 100%;
+        height: 4%;
+        background-image: url('img/bar.png');
+        background-size: 100% 100%;
+        background-repeat: repeat-x;
+    }
+
+    .level-icon {
+        width: 21.3%;
+        height: 23.1%;
+        position: absolute;
+    }
+
+    .upper-level {
+        top: 5%;
+    }
+
+    .middle-y-level {
+        top: 29.8%;
+    }
+
+    .lower-level {
+        top: 54.6%;
+    }
+
+    .normal {
+        background-image: url('img/level-select/normal.png');
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+    }
+
+    .correct {
+        background-image: url('img/level-select/correct.png');
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+    }
+
+    .wrong {
+        background-image: url('img/level-select/wrong.png');
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+    }
+
+    #game-process-Q {
+        background-image: url('img/game-screen/Q.png');
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        animation: spin 2.8s linear infinite;
+        position: absolute;
+        height: 9.5%;
+        width: 11.5%;
+        right: 34.67%;
+        top: 52.7%;
+    }
+
+
+    @keyframes spin {
+        0% {
+            transform: rotate(-15deg);
+        }
+        50% {
+            transform: rotate(15deg);
+        }
+        100% {
+            transform: rotate(-15deg);
+        }
+    }
+
+    #game-process-arrow-right {
+        background: url('img/level-select/right-arrow.png');
+        background-size: 100% 100%;
+        position: absolute;
+        z-index: 999;
+        height: 5.2%;
+        width: 7.9%;
+    }
+
+    #game-process-arrow-left {
+        background: url('img/level-select/left-arrow.png');
+        background-size: 100% 100%;
+        position: absolute;
+        height: 5.2%;
+        width: 7.9%;
+    }
+
+    .discourse {
+        padding: 4%;
+        border-radius: 2%;
+        max-height: 48%;
+        width: 88%;
+
+        position: absolute;
+        left: 6%;
+        top: 3%;
+
+        overflow-y: scroll;
+        text-align: center;
+        word-wrap: break-word;
+        line-height: 200%;
+        font-size: 19px;
+    }
+
+    .Question {
+        background-color: #0065b1;
+        color: #fee476;
+    }
+
+    .option-discourse {
+        background-color: #facd89;
+        color: black;
+    }
+
+    .game-process-option-menu {
+        border-radius: 2%;
+        width: 88%;
+
+        position: absolute;
+        left: 6%;
+        top: 52%;
+    }
+
+    .game-process-option {
+        background-color: #d2d2d2;
+        border-radius: 2%;
+        width: 88%;
+
+        position: relative;
+        text-align: center;
+        left: 6%;
+
+        font-weight: 800;
+        font-size: 30px;
+    }
+
+    .checked {
+        background-color: #fee476;
+    }
+
+    .checked::before {
+        content: '';
+        position: absolute;
+        border-color: #fff;
+        border-style: solid;
+        border-width: 0 5px 5px 0;
+        top: 10px;
+        right: 16px;
+        transform: rotate(45deg);
+        height: 45px;
+        width: 21px;
+    }
+
+    #game-process-option-send {
+        background: url('img/level-select/right-arrow.png');
+        background-size: 100% 100%;
+        z-index: 999;
+        height: 5.2%;
+        width: 7.9%;
+        position: fixed;
+        bottom: 2%;
+        right: 8.5%;
+    }
+
+    .discourse-outcome {
+        padding: 4%;
+        border-radius: 2%;
+        max-height: 55%;
+        width: 88%;
+
+        position: absolute;
+        left: 6%;
+        top: 3%;
+
+        overflow-y: scroll;
+        text-align: center;
+        word-wrap: break-word;
+        line-height: 200%;
+        font-size: 19px;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="game-background" class="height100">
+        <img id="cover-logo" src="img/game-logo.png" class="cover-logo">
+        <img id="to-index-button" src="img/access-index.png">
+        <img class="bar upper level-menu" style="display: none;">
+        <img class="bar middle-y level-menu" style="display: none;">
+        <img class="bar lower level-menu" style="display: none;">
+        <div id="option1" class="game-menu-option" style="display: none;"></div>
+        <div id="option2" class="game-menu-option" style="display: none;"></div>
+        <div id="option3" class="game-menu-option" style="display: none;"></div>
+        <div id="game-level" class="level-icon level-menu"></div>
+        <div id="game-process-Q" class="game-screen screen-1" style="display: none;"></div>
+        <div id="game-process-arrow-right" class="game-screen screen-1 screen-1-right bottom right" style="display: none;"></div>
+        <!-- <div id="game-process-arrow-left" class="game-screen screen-2 screen-1-left bottom left" style="display: none;"></div> -->
+        <img id="next-level-menu" class="bottom right arrow R-arrow level-menu" src="img/level-select/right-arrow.png" style="display: none;">
+        <div class="Question game-screen screen-1 screen-5 discourse" style="display: none;"></div>
+        <div class="game-screen discourse-outcome" style="display: none;"></div>
+        <div class="game-screen screen-2 option-discourse discourse" style="display: none;"></div>
+        <ul class="game-screen collapsible game-process-option-menu screen-5" style="display: none;">
+            <li>
+                <div id="A" class="game-process-option collapsible-header">A</div>
+                <div id="A-details" class="game-process-option-details gpod-1 collapsible-body"></div>
+            </li>
+            <br>
+            <li>
+                <div id="B" class="game-process-option collapsible-header">B</div>
+                <div id="B-details" class="game-process-option-details gpod-2 collapsible-body"></div>
+            </li>
+            <br>
+            <li>
+                <div id="C" class="game-process-option collapsible-header">C</div>
+                <div id="C-details" class="game-process-option-details gpod-3 collapsible-body"></div>
+            </li>
+        </ul>
+        <div id="game-process-option-send" class="game-screen screen-5" style="display:none"></div>
+        <img id="prev-level-menu" class="bottom left arrow L-arrow level-menu" src="img/level-select/left-arrow.png" style="display: none;">
+        <div id="o1-menu" class="backmenu" style="display: none;"></div>
+        <div id="o2-menu" class="backmenu" style="display: none;"></div>
+        <div id="o3-menu" class="backmenu" style="display: none;"></div>
+    </div>
+    <script type="text/javascript" src="js/levels.js"></script>
+    <script type="text/javascript">
+    var PageNumber = 1;
+    var LevelState = [1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+    $("#to-index-button").click(function() {
+        $("#cover-logo").addClass("up");
+        setTimeout(function() { $("#cover-logo").removeClass("up").removeClass("cover-logo"); }, 800);
+        ShowIndex(this);
+        ListAllLevel();
+    });
+    $("#next-level-menu").click(function() {
+        PageNumber++;
+
+        $('.level-icon').fadeOut('fast');
+        var BackgroundWidth = $("#game-background").width();
+        $("#game-background").animate({ backgroundPositionX: '-=' + BackgroundWidth + "px" });
+        $(".bar").animate({ backgroundPositionX: '-=' + BackgroundWidth + "px" });
+        if (PageNumber > 1) { $("#prev-level-menu").fadeIn(); };
+        if (PageNumber > 8) { $(this).fadeOut('fast'); };
+        ListLevel(PageNumber);
+    });
+    $("#prev-level-menu").click(function() {
+        PageNumber--;
+        var BackgroundWidth = $("#game-background").width();
+        $("#game-background").animate({ backgroundPositionX: '+=' + BackgroundWidth + "px" });
+        $(".bar").animate({ backgroundPositionX: '+=' + BackgroundWidth + "px" });
+        if (PageNumber == 1) { $(this).fadeOut('fast'); };
+        if (PageNumber < 9 && $("#next-level-menu").is(':hidden')) { $("#next-level-menu").fadeIn() };
+        ListLevel(PageNumber);
+    });
+    $("#option1").on('click', function() {
+        HideIndex("game-index");
+        $(".bar").delay(800).fadeIn(1200);
+        $("#o1-menu").fadeIn(1200);
+        $("#next-level-menu").fadeIn(1200);
+        PageNumber = 1;
+        setTimeout(function() { ListLevel(1); }, 500);
+    });
+    $("#option2").click(function() {
+        HideIndex("story", "#o2-menu");
+        setTimeout(function() {
+            $('#game-background').delay('slow').removeClass('height100').addClass('story').addClass('story-big');
+        }, 500);
+    });
+    $("#option3").click(function() {
+        HideIndex("tutorial", "#o3-menu");
+        setTimeout(function() {
+            $('#game-background').delay(1000).removeClass('height100').addClass('story').addClass('story-small');
+            var h = $("#game-background").height();
+            $("#game-background").height(h * 0.75);
+        }, 500);
+    });
+    $("#o1-menu").click(function() {
+        $(".bar").fadeOut(1200);
+        $(".level-menu").fadeOut(1200);
+        $('.level-icon').fadeOut('fast');
+        $('.game-screen').fadeOut('fast');
+        ShowIndex(this);
+    });
+    $("#o2-menu").click(function() {
+        ShowIndex(this);
+        setTimeout(function() {
+            $('#game-background').delay('slow').removeClass('story').removeClass('story-big').addClass('height100');
+        }, 1100);
+    });
+    $("#o3-menu").click(function() {
+        ShowIndex(this);
+        setTimeout(function() {
+            $('#game-background').removeClass('story').removeClass('story-small').addClass('height100');
+            $("#game-background").height('');
+        }, 1200);
+    });
+
+    function ListLevel(PageNumber) {
+        $('.level-icon').fadeOut();
+        for (var i = (PageNumber - 1) * 9; i < (PageNumber * 9); i++) {
+            var CurrentLevel = i + 1;
+            $('#' + CurrentLevel).fadeIn('slow');
+        };
+    };
+
+    function ListAllLevel() {
+        for (var i = 0; i < 90; i++) {
+            var CurrentLevel = i + 1;
+            $('#game-background').append('<div id=' + CurrentLevel + ' class="level-icon"></div>');
+            if (LevelState[i] == 0) {
+                $('#' + CurrentLevel).addClass('normal');
+            } else if (LevelState[i] == 1) {
+                $('#' + CurrentLevel).addClass('correct');
+            } else if (LevelState[i] == 2) {
+                $('#' + CurrentLevel).addClass('wrong');
+            }
+            var PageSequence = (CurrentLevel % 9);
+            var PageSequenceCol = PageSequence % 3;
+
+            if (PageSequence < 4 && PageSequence > 0) {
+                $('#' + CurrentLevel).addClass('upper-level');
+            } else if (3 < PageSequence && PageSequence < 7) {
+                $('#' + CurrentLevel).addClass('middle-y-level');
+            } else if ((6 < PageSequence && PageSequence < 10) || PageSequence == 0) {
+                $('#' + CurrentLevel).addClass('lower-level');
+            };
+
+            if (PageSequenceCol == 1) {
+                $('#' + CurrentLevel).addClass('left');
+            } else if (PageSequenceCol == 2) {
+                $('#' + CurrentLevel).addClass('middle-x');
+            } else if (PageSequenceCol == 0) {
+                $('#' + CurrentLevel).addClass('right');
+            };
+            $('#' + CurrentLevel).hide();
+        };
+        $(".level-icon").click(function() {
+            var LevelNumber = this.id;
+            if (LevelState[LevelNumber - 1] == 0) {
+                alert("您必須先運動才能解鎖喔！");
+            } else {
+                GameStart(LevelNumber);
+            }
+        });
+    };
+    var count = 0;
+
+    function GameStart(CurrentLevel) {
+        $("#" + CurrentLevel).one('click', function() {
+            $(".backmenu").fadeOut(1200);
+            $(".level-menu").fadeOut(1200);
+            $(".level-icon").fadeOut("fast");
+            $(".screen-1").delay(1000).fadeIn("fast");
+            ChangeBackgound('game-screen/KingQ');
+
+            //CT= Calling Text
+            var CTstring = "AppAllLevels";
+            var CTstring2 = "Levels";
+            var CTstring3 = "L" + CurrentLevel;
+            var CTBasic = window[CTstring][CTstring2][CTstring3];
+            $(".Question").text(CTBasic["Question"]);
+            var PicType=CTBasic["Type"];
+
+            NextScene(PicType, 1, CTBasic, CurrentLevel);
+        });
+    };
+
+    function NextScene(PicType, SceneNumber, CTBasic, CurrentLevel) {
+        $(".screen-" + SceneNumber + "-right").off().click(function() {
+            if (SceneNumber < 5) {
+                $(this).removeClass("screen-" + SceneNumber + "-right").removeClass("screen-" + SceneNumber).addClass("screen-" + (SceneNumber + 1) + "-right").addClass("screen-" + (SceneNumber + 1));
+                $(".option-discourse").removeClass("screen-" + SceneNumber).addClass("screen-" + (SceneNumber + 1));
+            }
+            $(".screen-" + SceneNumber).fadeOut("fast");
+            $(".screen-" + (SceneNumber + 1)).delay(600).fadeIn(1500);
+            //attach the option text
+            $(".gpod-" + (SceneNumber - 1)).text(CTBasic["Options"][SceneNumber - 2]);
+            if (SceneNumber < 4) {
+                ChangeBackgound('game-screen/' + PicType + '-' + SceneNumber);
+                setTimeout(function() {
+                    $(".option-discourse").empty().text(CTBasic["Options"][SceneNumber - 2]);
+                }, 900);
+            } else if (SceneNumber == 4) {
+                ChangeBackgound('game-screen/space');
+                // disable the next-page option & each-page option discourse
+                $(".option-discourse").fadeOut("slow");
+                $(this).fadeOut("slow");
+                $(".game-process-option").off().click(function() {
+                    //Mark the seleted option
+                    $(this).toggleClass('checked');
+                });
+                $("#game-process-option-send").off().click(function() {
+                    var CheckedItemNumber = $(".checked").length;
+                    if (CheckedItemNumber == 0) {
+                        alert("國王需要您的協助、選一個選項吧！")
+                    } else if (CheckedItemNumber > 1) {
+                        alert("國王說只能選一個！")
+                    } else if (CheckedItemNumber == 1) {
+                        var result = (CTBasic["Answer"] == $(".checked").text());
+                        if (result) {
+                            LevelState[CurrentLevel - 1] = 1;
+                            ChangeBackgound('game-screen/right');
+                            $(".discourse-outcome").fadeIn().text(CTBasic["Explaination"]);
+
+                        } else {
+                            LevelState[CurrentLevel - 1] = 2;
+                            ChangeBackgound('game-screen/wrong');
+                            $(".discourse-outcome").fadeIn().text(CTBasic["Explaination"]);
+
+                        }
+                        $(".game-process-option-menu").fadeOut("slow");
+                        $("#game-process-option-send").fadeOut("slow");
+                        $(".Question").fadeOut("slow");
+                        $("#o1-menu").fadeIn(1200);
+                    };
+                });
+                //create button for submit!
+            } else {
+                console.log("hello");
+            }
+            if (SceneNumber < 4) { NextScene(PicType, ++SceneNumber, CTBasic) };
+        });
+    };
+
+    function GameResult(Result, CurrentLevel) {
+        //紀錄結果->換場景-> 出結果文字->回到目錄->更新鍋子！（remove->create！）
+        if (Result) {
+            LevelState[CurrentLevel - 1] = 1;
+            ChangeBackgound('game-screen/right')
+
+        } else {
+            LevelState[CurrentLevel - 1] = 2;
+            ChangeBackgound('game-screen/wrong')
+
+        }
+    };
+
+    function ShowIndex(HideButton) {
+        ChangeBackgound('index');
+        $(".game-menu-option").delay(500).fadeIn();
+        setTimeout(function() {
+            $("#cover-logo").delay(500).show().addClass("index-logo");
+        }, 900);
+        $(HideButton).hide();
+    };
+
+    function HideIndex(NextPage, ShowButton) {
+        $("#cover-logo").fadeOut();
+        $(".game-menu-option").fadeOut();
+        ChangeBackgound(NextPage);
+        if (ShowButton) { $(ShowButton).show(); }
+    }
+
+    function ChangeBackgound(NextTitle) {
+        $('#game-background').fadeTo(700, 0, 'swing', function() {
+            $(this).css("background-image", "url(img/" + NextTitle + ".png)");
+        }).delay(300).fadeTo('slow', 1);
+    };
+    </script>
+    <script type="text/javascript" src="js/AuthDB.js"></script>
+    <script src="js/slip.js"></script>
+    <script type="text/javascript" src="js/caleandar.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/caleandar.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $(".button-collapse").sideNav();
+        $('select').material_select();
+    });
+    </script>
+</body>
+
+</html>
