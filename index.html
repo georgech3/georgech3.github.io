@@ -653,13 +653,13 @@
                         if (result) {
                             LevelState[CurrentLevel - 1] = 1;
                             ChangeBackgound('game-screen/right');
-                            $("#effect-sound-wrong").trigger('play');
+                            $("#effect-sound-correct").trigger('play');
                             $(".discourse-outcome").fadeIn().text(CTBasic["Explaination"]);
 
                         } else {
                             LevelState[CurrentLevel - 1] = 2;
                             ChangeBackgound('game-screen/wrong');
-                            $("#effect-sound-correct").trigger('play');
+                            $("#effect-sound-wrong").trigger('play');
                             $(".discourse-outcome").fadeIn().text(CTBasic["Explaination"]);
 
                         }
