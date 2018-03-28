@@ -399,11 +399,17 @@
         line-height: 200%;
         font-size: 19px;
     }
+      audio {
+        display: none;
+    }
     </style>
 </head>
 
 <body>
     <div id="game-background" class="height100">
+        <audio controls autoplay id="background-music" src="music/cover.mp3" type="audio/mpeg"> Your browser does not support the audio element.</audio>
+        <audio controls id="effect-sound-correct" src="music/correct.mp3" type="audio/mpeg"> Your browser does not support the audio element.</audio>
+        <audio controls id="effect-sound-wrong" src="music/wrong.mp3" type="audio/mpeg"> Your browser does not support the audio element.</audio>
         <img id="cover-logo" src="img/game-logo.png" class="cover-logo">
         <img id="to-index-button" src="img/access-index.png">
         <img class="bar upper level-menu" style="display: none;">
@@ -452,6 +458,7 @@
         setTimeout(function() { $("#cover-logo").removeClass("up").removeClass("cover-logo"); }, 800);
         ShowIndex(this);
         ListAllLevel();
+        PlayMusic("index");
     });
     $("#next-level-menu").click(function() {
         PageNumber++;
@@ -475,6 +482,7 @@
     });
     $("#option1").on('click', function() {
         HideIndex("game-index");
+        PlayMusic("game-index");
         $(".bar").delay(800).fadeIn(1200);
         $("#o1-menu").fadeIn(1200);
         $("#next-level-menu").fadeIn(1200);
@@ -483,12 +491,14 @@
     });
     $("#option2").click(function() {
         HideIndex("story", "#o2-menu");
+        PlayMusic("story");
         setTimeout(function() {
             $('#game-background').delay('slow').removeClass('height100').addClass('story').addClass('story-big');
         }, 500);
     });
     $("#option3").click(function() {
         HideIndex("tutorial", "#o3-menu");
+        PlayMusic("tutorial");
         setTimeout(function() {
             $('#game-background').delay(1000).removeClass('height100').addClass('story').addClass('story-small');
             var h = $("#game-background").height();
@@ -501,15 +511,18 @@
         $('.level-icon').fadeOut('fast');
         $('.game-screen').fadeOut('fast');
         ShowIndex(this);
+        PlayMusic("index");
     });
     $("#o2-menu").click(function() {
         ShowIndex(this);
+        PlayMusic("index");
         setTimeout(function() {
             $('#game-background').delay('slow').removeClass('story').removeClass('story-big').addClass('height100');
         }, 1100);
     });
     $("#o3-menu").click(function() {
         ShowIndex(this);
+        PlayMusic("index");
         setTimeout(function() {
             $('#game-background').removeClass('story').removeClass('story-small').addClass('height100');
             $("#game-background").height('');
@@ -584,6 +597,7 @@
             var PicType = CTBasic["Type"];
 
             NextScene(PicType, 1, CTBasic, CurrentLevel);
+            PlayMusic(PicType);
         });
     };
 
@@ -624,11 +638,13 @@
                         if (result) {
                             LevelState[CurrentLevel - 1] = 1;
                             ChangeBackgound('game-screen/right');
+                            $("#effect-sound-wrong").trigger('play');
                             $(".discourse-outcome").fadeIn().text(CTBasic["Explaination"]);
 
                         } else {
                             LevelState[CurrentLevel - 1] = 2;
                             ChangeBackgound('game-screen/wrong');
+                            $("#effect-sound-correct").trigger('play');
                             $(".discourse-outcome").fadeIn().text(CTBasic["Explaination"]);
 
                         }
@@ -659,6 +675,10 @@
         }
     };
 
+    function PlayMusic(MusicName) {
+        $("#background-music").attr("src", "music/" + MusicName + ".mp3");
+    };
+
     function ShowIndex(HideButton) {
         ChangeBackgound('index');
         $(".game-menu-option").delay(500).fadeIn();
@@ -673,7 +693,7 @@
         $(".game-menu-option").fadeOut();
         ChangeBackgound(NextPage);
         if (ShowButton) { $(ShowButton).show(); }
-    }
+    };
 
     function ChangeBackgound(NextTitle) {
         $('#game-background').fadeTo(700, 0, 'swing', function() {
