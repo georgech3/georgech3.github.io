@@ -389,6 +389,16 @@
         line-height: 200%;
         font-size: 19px;
     }
+
+    .game-process-option-details {
+        padding: 4%;
+        border-radius: 2%;
+
+        text-align: center;
+        word-wrap: break-word;
+        line-height: 200%;
+        font-size: 19px;
+    }
     </style>
 </head>
 
@@ -404,9 +414,8 @@
         <div id="option3" class="game-menu-option" style="display: none;"></div>
         <div id="game-level" class="level-icon level-menu"></div>
         <div id="game-process-Q" class="game-screen screen-1" style="display: none;"></div>
-        <div id="game-process-arrow-right" class="game-screen screen-1 screen-1-right bottom right" style="display: none;"></div>
+        <div id="game-process-arrow-right" class="game-screen first-arrow screen-1 screen-1-right bottom right" style="display: none;"></div>
         <!-- <div id="game-process-arrow-left" class="game-screen screen-2 screen-1-left bottom left" style="display: none;"></div> -->
-        <img id="next-level-menu" class="bottom right arrow R-arrow level-menu" src="img/level-select/right-arrow.png" style="display: none;">
         <div class="Question game-screen screen-1 screen-5 discourse" style="display: none;"></div>
         <div class="game-screen discourse-outcome" style="display: none;"></div>
         <div class="game-screen screen-2 option-discourse discourse" style="display: none;"></div>
@@ -427,15 +436,16 @@
             </li>
         </ul>
         <div id="game-process-option-send" class="game-screen screen-5" style="display:none"></div>
+        <img id="next-level-menu" class="bottom right arrow R-arrow level-menu" src="img/level-select/right-arrow.png" style="display: none;">
         <img id="prev-level-menu" class="bottom left arrow L-arrow level-menu" src="img/level-select/left-arrow.png" style="display: none;">
         <div id="o1-menu" class="backmenu" style="display: none;"></div>
         <div id="o2-menu" class="backmenu" style="display: none;"></div>
         <div id="o3-menu" class="backmenu" style="display: none;"></div>
     </div>
     <script type="text/javascript" src="js/levels.js"></script>
-     <script type="text/javascript">
+    <script type="text/javascript">
     var PageNumber = 1;
-    var LevelState = [1, 2, 1, 1, 1, 1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    var LevelState = [1, 2, 1, 1, 1, 1, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
     $("#to-index-button").click(function() {
         $("#cover-logo").addClass("up");
@@ -561,6 +571,7 @@
             $(".backmenu").fadeOut(1200);
             $(".level-menu").fadeOut(1200);
             $(".level-icon").fadeOut("fast");
+            $("#game-process-arrow-right").removeClass("screen-5-right").removeClass("screen-5").addClass("screen-1-right").addClass("screen-1");
             $(".screen-1").delay(1000).fadeIn("fast");
             ChangeBackgound('game-screen/KingQ');
 
@@ -570,7 +581,7 @@
             var CTstring3 = "L" + CurrentLevel;
             var CTBasic = window[CTstring][CTstring2][CTstring3];
             $(".Question").text(CTBasic["Question"]);
-            var PicType=CTBasic["Type"];
+            var PicType = CTBasic["Type"];
 
             NextScene(PicType, 1, CTBasic, CurrentLevel);
         });
@@ -596,6 +607,8 @@
                 // disable the next-page option & each-page option discourse
                 $(".option-discourse").fadeOut("slow");
                 $(this).fadeOut("slow");
+                // for sure that's no record for latter recoed
+                $(".checked").removeClass("checked");
                 $(".game-process-option").off().click(function() {
                     //Mark the seleted option
                     $(this).toggleClass('checked');
@@ -668,15 +681,12 @@
         }).delay(300).fadeTo('slow', 1);
     };
     </script>
-    <!-- <script type="text/javascript" src="js/AuthDB.js"></script> -->
-    <!-- <script src="js/slip.js"></script> -->
-    <!-- <script type="text/javascript" src="js/caleandar.js"></script> -->
-    <!-- <script type="text/javascript" src="js/index.js"></script> -->
-    <!-- <script type="text/javascript" src="js/caleandar.js"></script> -->
     <script type="text/javascript">
     $(document).ready(function() {
         $(".button-collapse").sideNav();
         $('select').material_select();
+        // $('.modal-trigger').leanModal();
+        // $('.modal-trigger').modal();
     });
     </script>
 </body>
