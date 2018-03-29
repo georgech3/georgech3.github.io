@@ -678,7 +678,8 @@
     };
 
     function PlayMusic(MusicName) {
-        $("#background-music").attr("src", "music/" + MusicName + ".mp3");
+        // $("#background-music").attr("src", "music/" + MusicName + ".mp3");
+        document.getElementById('background-music').src="music/" + MusicName + ".mp3";
     };
 
     function ShowIndex(HideButton) {
