@@ -465,7 +465,7 @@
     <script type="text/javascript" src="js/levels.js"></script>
     <script type="text/javascript">
     var PageNumber = 1;
-    var LevelState = [1, 2, 1, 1, 1, 1, 2, 2, 0, 0, 0, 0, 0, 0, 3, 3, 3, 3, 3, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    var LevelState = [1, 2, 1, 1, 1, 1, 2, 2, 0, 0, 3, 3, 3, 3, 3, 3, 3, 3];
     PlayMusic("cover");
 
     $("#to-index-button").click(function() {
@@ -473,7 +473,7 @@
         setTimeout(function() { $("#cover-logo").removeClass("up").removeClass("cover-logo"); }, 800);
         ShowIndex(this);
         ListAllLevel();
-        PlayMusic("index");
+        // PlayMusic("index");
     });
     $("#next-level-menu").click(function() {
         PageNumber++;
@@ -497,7 +497,7 @@
     });
     $("#option1").on('click', function() {
         HideIndex("game-index");
-        PlayMusic("game-index");
+        // PlayMusic("game-index");
         $(".bar").delay(800).fadeIn(1200);
         $("#o1-menu").css("bottom", "13%").fadeIn(1200);
         $("#next-level-menu").fadeIn(1200);
@@ -506,14 +506,14 @@
     });
     $("#option2").click(function() {
         HideIndex("story", "#o2-menu");
-        PlayMusic("story");
+        // PlayMusic("story");
         setTimeout(function() {
             $('#game-background').delay('slow').removeClass('height100').addClass('story').addClass('story-big');
         }, 500);
     });
     $("#option3").click(function() {
         HideIndex("tutorial", "#o3-menu");
-        PlayMusic("tutorial");
+        // PlayMusic("tutorial");
         setTimeout(function() {
             $('#game-background').delay(1000).removeClass('height100').addClass('story').addClass('story-small');
             var h = $("#game-background").height();
@@ -526,18 +526,18 @@
         $('.level-icon').fadeOut('fast');
         $('.game-screen').fadeOut('fast');
         ShowIndex(this);
-        PlayMusic("index");
+        PlayMusic("cover");
     });
     $("#o2-menu").click(function() {
         ShowIndex(this);
-        PlayMusic("index");
+        PlayMusic("cover");
         setTimeout(function() {
             $('#game-background').delay('slow').removeClass('story').removeClass('story-big').addClass('height100');
         }, 1100);
     });
     $("#o3-menu").click(function() {
         ShowIndex(this);
-        PlayMusic("index");
+        PlayMusic("cover");
         setTimeout(function() {
             $('#game-background').removeClass('story').removeClass('story-small').addClass('height100');
             $("#game-background").height('');
