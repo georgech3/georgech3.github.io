@@ -414,6 +414,16 @@
     audio {
         display: none;
     }
+
+     #toggle-music {
+        background-size: 100% 100%;
+        position: absolute;
+        height: 8s%;
+        width: 8%;
+        right: 3%;
+        top: 3%;
+        z-index: 99;
+    }
     </style>
 </head>
 
@@ -422,6 +432,7 @@
         <audio controls id="background-music" src="music/cover.mp3" type="audio/mpeg"> Your browser does not support the audio element.</audio>
         <audio controls id="effect-sound-correct" src="music/correct.mp3" type="audio/mpeg"> Your browser does not support the audio element.</audio>
         <audio controls id="effect-sound-wrong" src="music/wrong.mp3" type="audio/mpeg"> Your browser does not support the audio element.</audio>
+        <img id="toggle-music" class="music-play" src="img/audio.png" style="display: none;">
         <img id="cover-logo" src="img/game-logo.png" class="cover-logo">
         <img id="to-index-button" src="img/access-index.png">
         <img class="bar upper level-menu" style="display: none;">
@@ -540,6 +551,18 @@
             $('#game-background').removeClass('story').removeClass('story-small').addClass('height100');
             $("#game-background").height('');
         }, 1200);
+    });
+
+    $("#toggle-music").click(function() {
+        if ($(this).hasClass("music-play")) {
+            $(this).removeClass("music-play").addClass("music-pause");
+            $(this).attr("src", "img/no-audio.png")
+            $("#background-music").trigger("pause");
+        } else if ($(this).hasClass("music-pause")) {
+            $(this).removeClass("music-pause").addClass("music-play");
+            $(this).attr("src", "img/audio.png")
+            $("#background-music").trigger("play");
+        };
     });
 
     function ListLevel(PageNumber) {
@@ -687,6 +710,7 @@
     function ShowIndex(HideButton) {
         ChangeBackgound('index');
         $(".game-menu-option").delay(500).fadeIn();
+        $("#toggle-music").delay(500).fadeIn();
         setTimeout(function() {
             $("#cover-logo").delay(500).show().addClass("index-logo");
         }, 900);
@@ -696,6 +720,7 @@
     function HideIndex(NextPage, ShowButton) {
         $("#cover-logo").fadeOut();
         $(".game-menu-option").fadeOut();
+        $("#toggle-music").delay(500).fadeOut();
         ChangeBackgound(NextPage);
         if (ShowButton) { $(ShowButton).show(); }
     };
