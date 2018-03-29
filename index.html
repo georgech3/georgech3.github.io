@@ -419,7 +419,7 @@
 
 <body>
     <div id="game-background" class="height100">
-        <audio controls autoplay id="background-music" src="music/cover.mp3" type="audio/mpeg"> Your browser does not support the audio element.</audio>
+        <audio controls id="background-music" src="music/cover.mp3" type="audio/mpeg"> Your browser does not support the audio element.</audio>
         <audio controls id="effect-sound-correct" src="music/correct.mp3" type="audio/mpeg"> Your browser does not support the audio element.</audio>
         <audio controls id="effect-sound-wrong" src="music/wrong.mp3" type="audio/mpeg"> Your browser does not support the audio element.</audio>
         <img id="cover-logo" src="img/game-logo.png" class="cover-logo">
@@ -680,6 +680,7 @@
     function PlayMusic(MusicName) {
         // $("#background-music").attr("src", "music/" + MusicName + ".mp3");
         document.getElementById('background-music').src="music/" + MusicName + ".mp3";
+        $("#background-music").trigger('play');
     };
 
     function ShowIndex(HideButton) {
