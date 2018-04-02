@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html>
 
 <head>
@@ -473,7 +474,6 @@
         setTimeout(function() { $("#cover-logo").removeClass("up").removeClass("cover-logo"); }, 800);
         ShowIndex(this);
         ListAllLevel();
-        // PlayMusic("index");
     });
     $("#next-level-menu").click(function() {
         PageNumber++;
@@ -497,7 +497,6 @@
     });
     $("#option1").on('click', function() {
         HideIndex("game-index");
-        // PlayMusic("game-index");
         $(".bar").delay(800).fadeIn(1200);
         $("#o1-menu").css("bottom", "13%").fadeIn(1200);
         $("#next-level-menu").fadeIn(1200);
@@ -506,14 +505,12 @@
     });
     $("#option2").click(function() {
         HideIndex("story", "#o2-menu");
-        // PlayMusic("story");
         setTimeout(function() {
             $('#game-background').delay('slow').removeClass('height100').addClass('story').addClass('story-big');
         }, 500);
     });
     $("#option3").click(function() {
         HideIndex("tutorial", "#o3-menu");
-        // PlayMusic("tutorial");
         setTimeout(function() {
             $('#game-background').delay(1000).removeClass('height100').addClass('story').addClass('story-small');
             var h = $("#game-background").height();
@@ -526,18 +523,15 @@
         $('.level-icon').fadeOut('fast');
         $('.game-screen').fadeOut('fast');
         ShowIndex(this);
-        PlayMusic("cover");
     });
     $("#o2-menu").click(function() {
         ShowIndex(this);
-        PlayMusic("cover");
         setTimeout(function() {
             $('#game-background').delay('slow').removeClass('story').removeClass('story-big').addClass('height100');
         }, 1100);
     });
     $("#o3-menu").click(function() {
         ShowIndex(this);
-        PlayMusic("cover");
         setTimeout(function() {
             $('#game-background').removeClass('story').removeClass('story-small').addClass('height100');
             $("#game-background").height('');
@@ -626,7 +620,7 @@
             var PicType = CTBasic["Type"];
 
             NextScene(PicType, 1, CTBasic, CurrentLevel);
-            PlayMusic(PicType);
+            PlayMusic("cook");
         });
     };
 
@@ -634,7 +628,7 @@
         $(".screen-" + SceneNumber + "-right").off().click(function() {
             if (SceneNumber < 5) {
                 $(this).removeClass("screen-" + SceneNumber + "-right").removeClass("screen-" + SceneNumber).addClass("screen-" + (SceneNumber + 1) + "-right").addClass("screen-" + (SceneNumber + 1));
-                $(".option-discourse").removeClass("screen-" + SceneNumber).addClass("screen-" + (SceneNumber + 1));
+                $(".option-discourse").removeClass("screen-" + SceneNumber).addClass("screen-" + (SceneNumber + 1)).delay(600).text(CTBasic["Options"][SceneNumber - 1]);
             }
             $(".screen-" + SceneNumber).fadeOut("fast");
             $(".screen-" + (SceneNumber + 1)).delay(600).fadeIn(1500);
@@ -642,9 +636,6 @@
             $(".gpod-" + (SceneNumber - 1)).text(CTBasic["Options"][SceneNumber - 2]);
             if (SceneNumber < 4) {
                 ChangeBackgound('game-screen/' + PicType + '-' + SceneNumber);
-                setTimeout(function() {
-                    $(".option-discourse").empty().text(CTBasic["Options"][SceneNumber - 2]);
-                }, 900);
             } else if (SceneNumber == 4) {
                 ChangeBackgound('game-screen/space');
                 // disable the next-page option & each-page option discourse
@@ -688,6 +679,8 @@
                         $(".Question").fadeOut("slow");
                         var OutcomeButtomPosition = 0.85 - $(".discourse-outcome").height() / ($(window).height());
                         $("#o1-menu").css("bottom", (OutcomeButtomPosition)*100 + "%").fadeIn(1200);
+                        $("#o1-menu").click(function(){PlayMusic("cover");});
+
                     };
                 });
                 //create button for submit!
@@ -732,6 +725,11 @@
         }).delay(300).fadeTo('slow', 1);
     };
     </script>
+    <script type="text/javascript" src="js/AuthDB.js"></script>
+    <script src="js/slip.js"></script>
+    <script type="text/javascript" src="js/caleandar.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/caleandar.js"></script>
     <script type="text/javascript">
     $(document).ready(function() {
         $(".button-collapse").sideNav();
