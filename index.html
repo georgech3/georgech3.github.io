@@ -1,741 +1,184 @@
-<!DOCTYPE html>
-
+<!DOCTYPE HTML>
+<!--
+	Dimension by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
 <html>
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="format-detection" content="telephone=no">
-    <meta name="msapplication-tap-highlight" content="no">
-    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-    <title>運動平台</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Condensed">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-alpha.3/css/materialize.min.css">
-    <script type="text/javascript" src="js/firebase.js"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
-    <style type="text/css">
-    html,
-    body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-    }
-
-    @media only screen and (min-width: 0px) {
-        .story {
-            height: 220%;
-        }
-    }
-
-    @media only screen and (min-width: 350px) {
-        .story {
-            height: 210%;
-        }
-    }
-
-    @media only screen and (min-width: 370px) {
-        .story-big {
-            height: 180%;
-        }
-        .story-small {
-            height: 150%;
-        }
-    }
-
-    @media only screen and (min-width: 400px) {
-        .story {
-            height: 210%;
-        }
-    }
-
-    @media screen and (min-width: 500px) {
-        .story {
-            height: 200%;
-        }
-    }
-
-    @media screen and (min-width: 600px) {
-        .story {
-            height: 250%;
-        }
-    }
-
-    @media screen and (min-width: 700px) {
-        .story-big {
-            height: 280%;
-        }
-        .story-small {
-            height: 330%;
-        }
-    }
-
-    @media screen and (min-width: 800px) {
-        .story-big {
-            height: 310%;
-        }
-        .story-small {
-            height: 310%;
-        }
-    }
-
-
-    #game-background {
-        max-width: 100%;
-        /*height: 100%;*/
-        /*max-height: 100%;*/
-        margin: 0;
-        padding: 0;
-        background-image: url('img/Cover.png');
-        background-size: 100% 100%;
-        background-repeat: repeat-x;
-        position: relative;
-        /*overflow-y: hidden;*/
-    }
-
-    .height100 {
-        height: 100%;
-    }
-
-    #to-index-button {
-        position: absolute;
-        width: 36%;
-        max-height: 100%;
-        margin: 0;
-        padding: 0;
-        left: 33%;
-        top: 58%;
-    }
-
-    .game-menu-option {
-        width: 46%;
-        height: 6%;
-        left: 27%;
-        position: absolute;
-    }
-
-    #option1 {
-        top: 39%;
-    }
-
-    #option2 {
-        top: 46%;
-    }
-
-    #option3 {
-        top: 54%;
-    }
-
-    .backmenu {
-        position: fixed;
-        bottom: 2%;
-        right: 0px;
-        width: 25%;
-        height: 8%;
-    }
-
-    #o1-menu {
-        background: url('img/level-select/game-back-menu.png');
-        background-size: 100% 100%;
-        position: absolute;
-        /*bottom: 13%;*/
-        left: 40%;
-        width: 21%;
-        height: 4.5%;
-    }
-
-    #cover-logo {
-        /*width: 45vw;*/
-        position: absolute;
-        /*position: relative;*/
-        left: 20%;
-        width: 60%;
-        height: 32%;
-    }
-
-    .cover-logo {
-        top: 23%;
-    }
-
-    .index-logo {
-        top: 6%;
-    }
-
-    .up {
-        animation: drive;
-        animation-duration: 1s;
-    }
-
-    @keyframes drive {
-        0% {
-            top: 23%;
-        }
-        100% {
-            top: 6%;
-        }
-    }
-
-    .upper {
-        top: 3%;
-    }
-
-    .middle-y {
-        top: 27.8%;
-    }
-
-    .lower {
-        top: 52.6%;
-    }
-
-    .right {
-        right: 8.5%;
-    }
-
-    .middle-x {
-        right: 40%;
-    }
-
-    .left {
-        left: 8.5%;
-    }
-
-    .bottom {
-        bottom: 13%;
-    }
-
-    .arrow {
-        position: absolute;
-        height: 5.2%;
-        width: 7.9%;
-    }
-
-    .bar {
-        position: absolute;
-        left: 2%;
-        width: 100%;
-        height: 4%;
-        background-image: url('img/bar.png');
-        background-size: 100% 100%;
-        background-repeat: repeat-x;
-    }
-
-    .level-icon {
-        width: 21.3%;
-        height: 23.1%;
-        position: absolute;
-    }
-
-    .upper-level {
-        top: 3%;
-    }
-
-    .middle-y-level {
-        top: 27.8%;
-    }
-
-    .lower-level {
-        top: 53.6%;
-    }
-
-    .normal {
-        background-image: url('img/level-select/normal.png');
-        background-size: 100% 100%;
-        background-repeat: no-repeat;
-    }
-
-    .correct {
-        background-image: url('img/level-select/correct.png');
-        background-size: 100% 100%;
-        background-repeat: no-repeat;
-    }
-
-    .wrong {
-        background-image: url('img/level-select/wrong.png');
-        background-size: 100% 100%;
-        background-repeat: no-repeat;
-    }
-
-    .locked {
-        background-image: url('img/level-select/locked.png');
-        background-size: 100% 100%;
-        background-repeat: no-repeat;
-    }
-
-    #game-process-Q {
-        background-image: url('img/game-screen/Q.png');
-        background-repeat: no-repeat;
-        background-size: 100% 100%;
-        animation: spin 2.8s linear infinite;
-        position: absolute;
-        height: 9.5%;
-        width: 11.5%;
-        right: 34.67%;
-        top: 52.7%;
-    }
-
-
-    @keyframes spin {
-        0% {
-            transform: rotate(-15deg);
-        }
-        50% {
-            transform: rotate(15deg);
-        }
-        100% {
-            transform: rotate(-15deg);
-        }
-    }
-
-    #game-process-arrow-right {
-        background: url('img/level-select/right-arrow.png');
-        background-size: 100% 100%;
-        position: absolute;
-        z-index: 999;
-        height: 5.2%;
-        width: 7.9%;
-    }
-
-    #game-process-arrow-left {
-        background: url('img/level-select/left-arrow.png');
-        background-size: 100% 100%;
-        position: absolute;
-        height: 5.2%;
-        width: 7.9%;
-    }
-
-    .discourse {
-        padding: 4%;
-        border-radius: 2%;
-        max-height: 48%;
-        width: 88%;
-
-        position: absolute;
-        left: 6%;
-        top: 3%;
-
-        overflow-y: scroll;
-        text-align: center;
-        word-wrap: break-word;
-        line-height: 200%;
-        font-size: 19px;
-    }
-
-    .Question {
-        background-color: #0065b1;
-        color: #fee476;
-    }
-
-    .option-discourse {
-        background-color: #facd89;
-        color: black;
-    }
-
-    .game-process-option-menu {
-        border-radius: 2%;
-        width: 88%;
-
-        position: absolute;
-        left: 6%;
-        top: 52%;
-    }
-
-    .game-process-option {
-        background-color: #d2d2d2;
-        border-radius: 2%;
-        width: 88%;
-
-        position: relative;
-        text-align: center;
-        left: 6%;
-
-        font-weight: 800;
-        font-size: 30px;
-    }
-
-    .checked {
-        background-color: #fee476;
-    }
-
-    .checked::before {
-        content: '';
-        position: absolute;
-        border-color: #fff;
-        border-style: solid;
-        border-width: 0 5px 5px 0;
-        top: 10px;
-        right: 16px;
-        transform: rotate(45deg);
-        height: 45px;
-        width: 21px;
-    }
-
-    #game-process-option-send {
-        background: url('img/level-select/right-arrow.png');
-        background-size: 100% 100%;
-        z-index: 999;
-        height: 5.2%;
-        width: 7.9%;
-        position: fixed;
-        bottom: 2%;
-        right: 8.5%;
-    }
-
-    .discourse-outcome {
-        padding: 4%;
-        border-radius: 2%;
-        max-height: 55%;
-        width: 88%;
-
-        position: absolute;
-        left: 6%;
-        top: 3%;
-
-        overflow-y: scroll;
-        text-align: center;
-        word-wrap: break-word;
-        line-height: 200%;
-        font-size: 19px;
-    }
-
-    .game-process-option-details {
-        padding: 4%;
-        border-radius: 2%;
-
-        text-align: center;
-        word-wrap: break-word;
-        line-height: 200%;
-        font-size: 19px;
-    }
-
-    audio {
-        display: none;
-    }
-
-    #toggle-music {
-        background-size: 100% 100%;
-        position: absolute;
-        height: 8s%;
-        width: 8%;
-        right: 3%;
-        top: 3%;
-        z-index: 99;
-    }
-    </style>
+    <title>電子名片--George Chan</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript>
+        <link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 </head>
 
-<body>
-    <div id="game-background" class="height100">
-        <audio controls id="background-music" src="" type="audio/mpeg"> Your browser does not support the audio element.</audio>
-        <audio controls id="effect-sound-correct" src="music/correct.mp3" type="audio/mpeg"> Your browser does not support the audio element.</audio>
-        <audio controls id="effect-sound-wrong" src="music/wrong.mp3" type="audio/mpeg"> Your browser does not support the audio element.</audio>
-        <img id="cover-logo" src="img/game-logo.png" class="cover-logo">
-        <img id="toggle-music" class="music-play" src="img/audio.png" style="display: none;">
-        <img id="to-index-button" src="img/access-index.png">
-        <div id="option1" class="game-menu-option" style="display: none;"></div>
-        <div id="option2" class="game-menu-option" style="display: none;"></div>
-        <div id="option3" class="game-menu-option" style="display: none;"></div>
-        <div id="game-level" class="level-icon level-menu"></div>
-        <div id="game-process-Q" class="game-screen screen-1" style="display: none;"></div>
-        <div id="game-process-arrow-right" class="game-screen first-arrow screen-1 screen-1-right bottom right" style="display: none;"></div>
-        <div class="Question game-screen screen-1 screen-5 discourse" style="display: none;"></div>
-        <div class="game-screen discourse-outcome" style="display: none;"></div>
-        <div class="game-screen screen-2 option-discourse discourse" style="display: none;"></div>
-        <ul class="game-screen collapsible game-process-option-menu screen-5" style="display: none;">
-            <li>
-                <div id="A" class="game-process-option collapsible-header">A</div>
-                <div id="A-details" class="game-process-option-details gpod-1 collapsible-body"></div>
-            </li>
-            <br>
-            <li>
-                <div id="B" class="game-process-option collapsible-header">B</div>
-                <div id="B-details" class="game-process-option-details gpod-2 collapsible-body"></div>
-            </li>
-            <br>
-            <li>
-                <div id="C" class="game-process-option collapsible-header">C</div>
-                <div id="C-details" class="game-process-option-details gpod-3 collapsible-body"></div>
-            </li>
-        </ul>
-        <div id="game-process-option-send" class="game-screen screen-5" style="display:none"></div>
-        <img id="next-level-menu" class="bottom right arrow R-arrow level-menu" src="img/level-select/right-arrow.png" style="display: none;">
-        <img id="prev-level-menu" class="bottom left arrow L-arrow level-menu" src="img/level-select/left-arrow.png" style="display: none;">
-        <div id="o1-menu" class="backmenu" style="display: none;"></div>
-        <div id="o2-menu" class="backmenu" style="display: none;"></div>
-        <div id="o3-menu" class="backmenu" style="display: none;"></div>
+<body class="is-preload">
+    <!-- Wrapper -->
+    <div id="wrapper">
+        <!-- Header -->
+        <header id="header">
+            <div class="logo">
+                <img class="icon" src="images/profile.jpg" style="height: 100%;width:100%" />
+            </div>
+            <div class="content">
+                <div class="inner">
+                    <h1>詹喬智</h1>
+                    <h2>George Chan</h2>
+                    <h5>跨域於醫學與工程，擅長醫材專案的管理與開發，致力於推廣人生設計與跨域溝通技巧。</h5>
+                    <p class="no-margin-bottom"><a href="" class="yellow-text" style="margin: 0;"></a>馬偕/陽明 兼任教師
+                        <br>--臨床工程、醫療AI
+                    </p>
+                    <p class="no-margin-bottom"><a href="#UN" class="yellow-text" style="margin: 0;">臨床需求平台</a>PM<br>--醫材設計、高等教育、<a class="yellow-text" href="https://medium.com/unmetneeds">專欄撰寫</a>
+                    </p>
+                    <p class="no-margin-bottom"><a href="MW" class="yellow-text" style="margin: 0;">沐懷管理顧問</a>PM<br>--設計思考、人生設計、企業培訓
+                    </p>
+                    <p class="no-margin-bottom"><a href="MS" class="yellow-text" style="margin: 0;">陽明創客空間</a>PM
+                        <br>--醫材Prototyping、3D列印、AI工作坊辦理
+                    </p>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#MW">Moodwide</a></li>
+                    <li><a href="#UN">Unmetneeds</a></li>
+                    <li><a href="#MS">Makerspace</a></li>
+                    <li><a href="#others">Others</a></li>
+                    <!--<li><a href="#elements">Elements</a></li>-->
+                </ul>
+            </nav>
+        </header>
+        <!-- Main -->
+        <div id="main">
+            <!-- Intro -->
+            <article id="MW">
+                <h2 class="major">MoodWide 沐懷管理顧問</h2>
+                <h3>企業、團隊培訓課程＆人生設計課程</h3>
+                <p>
+                    <br>三大培訓，與您一同跨出改變的第一步
+                    <br>美好人生設計 x 跨領域合作 x 創新與創業
+                </p>
+                <span class="image main"><img src="images/MW-speaker.jpeg" alt="" /></span>
+                <p>擔任PM/Coach，引導整體以及培訓中專案進行
+                    <br>
+                    <br>
+                    <strong>企業、組織培訓</strong>：協助組織企業、主管內部創新與團隊建置，使用流程如設計思考、找到你的為什麼、設計你的人生等。
+                    <br>
+                    <br>
+                    <strong>人生設計工作坊</strong>：給予卡關者、學生找尋方向的方法學，實體觸及影響3000+人
+                </p>
+                <span class="image main"><img src="images/Find your why workshop for 100+ Hospital nurse managers.jpg" alt="" /></span>
+                <ul class="actions">
+                    <li><a href="https://www.moodwide.com/" class="yellow-text button primary" style="margin: 0;">沐懷管理顧問 網站</a>
+                    </li>
+                </ul>
+            </article>
+            <!-- Work -->
+            <article id="UN">
+                <h2 class="major">Unmetneeds臨床需求平台</h2>
+                <h3>醫材設計 x 高等教育 x 專欄撰寫</h3>
+                <p>
+                    為解決臨床人員的未滿足需求（unmet-needs），我們希望能在此媒合有興趣參與研發的學研界人士，共同解決這些臨床上的挑戰。
+                </p>
+                </p>
+                <span class="image main"><img src="images/discussion.jpg" alt="" /></span>
+                <p>擔任總PM，引導整體以及全部專案推進。
+                    <br>
+                    <br>
+                    <strong>醫材專案</strong>
+                    ：身為「臨床工程溝通者」，我們串連、溝通臨床與工程端，來幫助推動其專案往前邁進，節省溝通、來回的時間。最後讓臨床環境、患者得以改善、受惠。
+                    <br>
+                    <br>
+                    <strong>專欄撰寫</strong>：希望從醫工的角度出發，與讀者分享醫材開發背後的巧思。藉由介紹醫材設計的觀點、開發醫材的經驗分享，與整理相關的知識資源，讓大家得知，醫材開發，有跡可循。
+                    <br>
+                    <br>
+                    <strong>高等教育</strong>：於台大與陽明開設課程，引導40+組團隊醫材開發。
+                </p>
+                <span class="image main"><img src="images/Unmet-needs.jpg" alt="" /></span>
+                <ul class="actions">
+                    <li><a href="https://unmet-needs.org" class="yellow-text button primary" style="margin: 0;">臨床需求平台 網站</a></li>
+                    <li><a href="https://medium.com/unmetneeds" class="yellow-text button" style="margin: 0;">臨床工程專欄 網站</a></li>
+                </ul>
+            </article>
+            <!-- About -->
+            <article id="MS">
+                <h2 class="major">Makerspace 陽明創客</h2>
+                <p>擔任PM，規劃並執行整體進度
+                	<br>打造在陽明校內的空間，從零開始於學校建置，找資金、空間改建、購置機器（3D列印機、電腦、雷切機等）與使用規則。</p>
+
+                <span class="image main">原樣：<img src="images/Makerspace-old.jpg" alt="" /></span>
+                <span class="image main">一年後：<img src="images/Makerspace-new.jpg" alt="" /></span>
+                <p>
+                廣設課程、工作坊與競賽使1000+學生學會3D列印，並實際動手解決問題。</p>
+                <span class="image main"><img src="images/Makerspace.jpg" alt="" /></span>
+                <ul class="actions">
+                	<li><a href="https://sites.google.com/view/nymumakerspace/" class="yellow-text button primary" style="margin: 0;">陽明創客空間 網站</a>
+                	</li>
+            </ul>
+            </article>
+            <!-- Contact -->
+            <article id="others">
+                <h2 class="major">Others 其他經歷</h2>
+                 <span class="image main"><img src="images/Christmas.jpg" alt="" /></span>
+                <h3>學經歷</h3>
+                <p>跨域於醫學與工程，淬煉出不同領域專案推進與溝通的技巧。</p>
+                <p>陽明大學 醫學工程＆交通大學 機械工程
+                	<br>上海今皓光電 實習製程工程師
+                	<br>台北榮總 復健科/泌尿科/醫研部/神經外科 RA
+                	<br>台大醫院 急診部/外科部 RA
+                	<br>台大醫工所/陽明神研所 RA
+                	<br>馬偕醫學院兼任教師
+                	<br>陽明大學創客中心 PM
+                	<br>Unmetneeds臨床需求平台 PM
+                	<br>沐懷管理顧問 PM</p>
+                 <span class="image main"><img src="images/projects-lead.jpg" alt="" /></span>
+            	<h3>大型專案經歷</h3>
+            	<p>機械手臂--
+            		<br>台大醫院 心臟外科 心臟機械手臂 機構設計
+            		<br>台大醫院 腸胃外科 內視鏡機械手臂 機構設計
+            	</p>
+
+            	<p>AI、Data Science--
+            		<br>台大醫院 急診系統 CDSS
+            		<br>台北榮總 神外 腦水腫 判讀AI
+            		<br>台北榮總 神外 轉移瘤 預測AI
+            		<br>多倫多大學 腦認知功能 判讀AI
+            		<br>IBM＆秀傳 AI視覺復健聊天機器人
+            	</p>
+
+            	<p>Chatbot、App＆醫院系統--
+            		<br>台北榮總 復健科 智慧復健＆副作用紀錄系統
+            		<br>台北榮總 醫研部 肝癌預判App
+            		<br>考古豹 國考考古題聊天機器人
+            	</p>
+
+            	<p>3D列印--
+            		<br>小兒麻痹進食用外骨骼
+            	</p>
+            </article>
+            <!-- Elements -->
+        </div>
+        <!-- Footer -->
+        <footer id="footer">
+            <p class="copyright">&copy; Chiaochihchan. Original Design: <a href="https://html5up.net">HTML5 UP</a></p>
+            <p class="icon fa-envelope-o copyright" style="text-transform:none"><span class="">Email</span>&nbsp&nbspchiaochihchan@gmail.com</p>
+            <ul class="icons">
+                    <li><a href="https://www.facebook.com/ciaochih.chan" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+                    <!-- <li><a href="https://github.com/georgech3" class="icon fa-github"><span class="label">GitHub</span></a></li> -->
+                    <li><a href="https://www.linkedin.com/in/chiaochih-chan-551584116/" class="icon fa-linkedin"><span class="label">Linkedin</span></a></li>
+                </ul>
+        </footer>
     </div>
-    <script type="text/javascript" src="js/levels.js"></script>
-    <script type="text/javascript">
-    var PageNumber = 1;
-    var LevelState = [1, 2, 1, 1, 1, 1, 2, 2, 0, 0, 3, 3, 3, 3, 3, 3, 3, 3];
-    PlayMusic("cover");
-
-    $("#to-index-button").click(function() {
-        $("#cover-logo").addClass("up");
-        setTimeout(function() { $("#cover-logo").removeClass("up").removeClass("cover-logo"); }, 800);
-        ShowIndex(this);
-        ListAllLevel();
-    });
-    $("#next-level-menu").click(function() {
-        PageNumber++;
-
-        $('.level-icon').fadeOut('fast');
-        var BackgroundWidth = $("#game-background").width();
-        $("#game-background").animate({ backgroundPositionX: '-=' + BackgroundWidth + "px" });
-        $(".bar").animate({ backgroundPositionX: '-=' + BackgroundWidth + "px" });
-        if (PageNumber > 1) { $("#prev-level-menu").fadeIn(); };
-        if (PageNumber > 8) { $(this).fadeOut('fast'); };
-        ListLevel(PageNumber);
-    });
-    $("#prev-level-menu").click(function() {
-        PageNumber--;
-        var BackgroundWidth = $("#game-background").width();
-        $("#game-background").animate({ backgroundPositionX: '+=' + BackgroundWidth + "px" });
-        $(".bar").animate({ backgroundPositionX: '+=' + BackgroundWidth + "px" });
-        if (PageNumber == 1) { $(this).fadeOut('fast'); };
-        if (PageNumber < 9 && $("#next-level-menu").is(':hidden')) { $("#next-level-menu").fadeIn() };
-        ListLevel(PageNumber);
-    });
-    $("#option1").on('click', function() {
-        HideIndex("game-index");
-        $(".bar").delay(800).fadeIn(1200);
-        $("#o1-menu").css("bottom", "13%").fadeIn(1200);
-        $("#next-level-menu").fadeIn(1200);
-        PageNumber = 1;
-        setTimeout(function() { ListLevel(1); }, 500);
-    });
-    $("#option2").click(function() {
-        HideIndex("story", "#o2-menu");
-        setTimeout(function() {
-            $('#game-background').delay('slow').removeClass('height100').addClass('story').addClass('story-big');
-        }, 500);
-    });
-    $("#option3").click(function() {
-        HideIndex("tutorial", "#o3-menu");
-        setTimeout(function() {
-            $('#game-background').delay(1000).removeClass('height100').addClass('story').addClass('story-small');
-            var h = $("#game-background").height();
-            $("#game-background").height(h * 0.75);
-        }, 500);
-    });
-    $("#o1-menu").click(function() {
-        $(".bar").fadeOut(1200);
-        $(".level-menu").fadeOut(1200);
-        $('.level-icon').fadeOut('fast');
-        $('.game-screen').fadeOut('fast');
-        ShowIndex(this);
-    });
-    $("#o2-menu").click(function() {
-        ShowIndex(this);
-        setTimeout(function() {
-            $('#game-background').delay('slow').removeClass('story').removeClass('story-big').addClass('height100');
-        }, 1100);
-    });
-    $("#o3-menu").click(function() {
-        ShowIndex(this);
-        setTimeout(function() {
-            $('#game-background').removeClass('story').removeClass('story-small').addClass('height100');
-            $("#game-background").height('');
-        }, 1200);
-    });
-
-    $("#toggle-music").click(function() {
-        if ($(this).hasClass("music-play")) {
-            $(this).removeClass("music-play").addClass("music-pause");
-            $(this).attr("src", "img/no-audio.png")
-            $("#background-music").trigger("pause");
-        } else if ($(this).hasClass("music-pause")) {
-            $(this).removeClass("music-pause").addClass("music-play");
-            $(this).attr("src", "img/audio.png")
-            $("#background-music").trigger("play");
-        };
-    });
-
-    function ListLevel(PageNumber) {
-        $('.level-icon').fadeOut();
-        for (var i = (PageNumber - 1) * 9; i < (PageNumber * 9); i++) {
-            var CurrentLevel = i + 1;
-            $('#' + CurrentLevel).fadeIn('slow');
-        };
-    };
-
-    function ListAllLevel() {
-        for (var i = 0; i < 90; i++) {
-            var CurrentLevel = i + 1;
-            $('#game-background').append('<div id=' + CurrentLevel + ' class="level-icon"></div>');
-            if (LevelState[i] == 0) {
-                $('#' + CurrentLevel).addClass('normal');
-            } else if (LevelState[i] == 1) {
-                $('#' + CurrentLevel).addClass('correct');
-            } else if (LevelState[i] == 2) {
-                $('#' + CurrentLevel).addClass('wrong');
-            } else if (LevelState[i] == 3) {
-                $('#' + CurrentLevel).addClass('locked');
-            };
-            var PageSequence = (CurrentLevel % 9);
-            var PageSequenceCol = PageSequence % 3;
-
-            if (PageSequence < 4 && PageSequence > 0) {
-                $('#' + CurrentLevel).addClass('upper-level');
-            } else if (3 < PageSequence && PageSequence < 7) {
-                $('#' + CurrentLevel).addClass('middle-y-level');
-            } else if ((6 < PageSequence && PageSequence < 10) || PageSequence == 0) {
-                $('#' + CurrentLevel).addClass('lower-level');
-            };
-
-            if (PageSequenceCol == 1) {
-                $('#' + CurrentLevel).addClass('left');
-            } else if (PageSequenceCol == 2) {
-                $('#' + CurrentLevel).addClass('middle-x');
-            } else if (PageSequenceCol == 0) {
-                $('#' + CurrentLevel).addClass('right');
-            };
-            $('#' + CurrentLevel).hide();
-        };
-        $(".level-icon").click(function() {
-            var LevelNumber = this.id;
-            if (LevelState[LevelNumber - 1] == 3) {
-                alert("您必須先運動才能解鎖喔！");
-            } else {
-                GameStart(LevelNumber);
-            }
-        });
-    };
-    var count = 0;
-
-    function GameStart(CurrentLevel) {
-        $("#" + CurrentLevel).one('click', function() {
-            $(".backmenu").fadeOut(1200);
-            $(".level-menu").fadeOut(1200);
-            $(".level-icon").fadeOut("fast");
-            $("#game-process-arrow-right").removeClass("screen-5-right").removeClass("screen-5").addClass("screen-1-right").addClass("screen-1");
-            $(".screen-1").delay(1000).fadeIn("fast");
-            ChangeBackgound('game-screen/KingQ');
-
-            //CT= Calling Text
-            var CTstring = "AppAllLevels";
-            var CTstring2 = "Levels";
-            var CTstring3 = "L" + CurrentLevel;
-            var CTBasic = window[CTstring][CTstring2][CTstring3];
-            $(".Question").text(CTBasic["Question"]);
-            var PicType = CTBasic["Type"];
-
-            NextScene(PicType, 1, CTBasic, CurrentLevel);
-            PlayMusic("cook");
-        });
-    };
-
-    function NextScene(PicType, SceneNumber, CTBasic, CurrentLevel) {
-        $(".screen-" + SceneNumber + "-right").off().click(function() {
-            if (SceneNumber < 5) {
-                $(this).removeClass("screen-" + SceneNumber + "-right").removeClass("screen-" + SceneNumber).addClass("screen-" + (SceneNumber + 1) + "-right").addClass("screen-" + (SceneNumber + 1));
-                $(".option-discourse").removeClass("screen-" + SceneNumber).addClass("screen-" + (SceneNumber + 1)).delay(600).text(CTBasic["Options"][SceneNumber - 1]);
-            }
-            $(".screen-" + SceneNumber).fadeOut("fast");
-            $(".screen-" + (SceneNumber + 1)).delay(600).fadeIn(1500);
-            //attach the option text
-            $(".gpod-" + (SceneNumber - 1)).text(CTBasic["Options"][SceneNumber - 2]);
-            if (SceneNumber < 4) {
-                ChangeBackgound('game-screen/' + PicType + '-' + SceneNumber);
-            } else if (SceneNumber == 4) {
-                ChangeBackgound('game-screen/space');
-                // disable the next-page option & each-page option discourse
-                $(".option-discourse").fadeOut("slow");
-                $(this).fadeOut("slow");
-                // for sure that's no record for latter recoed
-                $(".checked").removeClass("checked");
-                $(".game-process-option").off().click(function() {
-                    //Mark the seleted option
-                    $(this).toggleClass('checked');
-                });
-                $("#game-process-option-send").off().click(function() {
-                    //紀錄結果->換場景-> 出結果文字->回到目錄->更新鍋子！（remove->create！）
-                    var CheckedItemNumber = $(".checked").length;
-                    if (CheckedItemNumber == 0) {
-                        alert("國王需要您的協助、選一個選項吧！")
-                    } else if (CheckedItemNumber > 1) {
-                        alert("國王說只能選一個！")
-                    } else if (CheckedItemNumber == 1) {
-                        var result = (CTBasic["Answer"] == $(".checked").text());
-                        var StateNow = LevelState[CurrentLevel - 1];
-                        if (result) {
-                            if (StateNow == 0) { LevelState[CurrentLevel - 1] = 1; }
-                            ChangeBackgound('game-screen/right');
-                            if ($("#toggle-music").hasClass("music-play")) {
-                                $("#effect-sound-correct").trigger('play');
-                            };
-                            $(".discourse-outcome").fadeIn().text(CTBasic["Explaination"]);
-
-                        } else {
-                            if (StateNow == 0) { LevelState[CurrentLevel - 1] = 2; }
-                            ChangeBackgound('game-screen/wrong');
-                            if ($("#toggle-music").hasClass("music-play")) {
-                                $("#effect-sound-wrong").trigger('play');
-                            };
-                            $(".discourse-outcome").fadeIn().text(CTBasic["Explaination"]);
-
-                        }
-                        $(".game-process-option-menu").fadeOut("slow");
-                        $("#game-process-option-send").fadeOut("slow");
-                        $(".Question").fadeOut("slow");
-                        var OutcomeButtomPosition = 0.85 - $(".discourse-outcome").height() / ($(window).height());
-                        $("#o1-menu").css("bottom", (OutcomeButtomPosition)*100 + "%").fadeIn(1200);
-                        $("#o1-menu").click(function(){PlayMusic("cover");});
-
-                    };
-                });
-                //create button for submit!
-            } else {
-                console.log("hello");
-            }
-            if (SceneNumber < 4) { NextScene(PicType, ++SceneNumber, CTBasic) };
-        });
-    };
-
-    function PlayMusic(MusicName) {
-        document.getElementById('background-music').src = "music/" + MusicName + ".mp3";
-        var toggle = $("#toggle-music");
-        if (toggle.hasClass("music-play")) {
-            $("#background-music").trigger("play");
-        } else if ($(this).hasClass("music-pause")) {
-            $("#background-music").trigger("pause");
-        };
-    };
-
-    function ShowIndex(HideButton) {
-        ChangeBackgound('index');
-        $(".game-menu-option").delay(500).fadeIn();
-        $("#toggle-music").delay(500).fadeIn();
-        setTimeout(function() {
-            $("#cover-logo").delay(500).show().addClass("index-logo");
-        }, 900);
-        $(HideButton).hide();
-    };
-
-    function HideIndex(NextPage, ShowButton) {
-        $("#cover-logo").fadeOut();
-        $(".game-menu-option").fadeOut();
-        $("#toggle-music").fadeOut();
-        ChangeBackgound(NextPage);
-        if (ShowButton) { $(ShowButton).show(); }
-    };
-
-    function ChangeBackgound(NextTitle) {
-        $('#game-background').fadeTo(700, 0, 'swing', function() {
-            $(this).css("background-image", "url(img/" + NextTitle + ".png)");
-        }).delay(300).fadeTo('slow', 1);
-    };
-    </script>
-    <script type="text/javascript" src="js/AuthDB.js"></script>
-    <script src="js/slip.js"></script>
-    <script type="text/javascript" src="js/caleandar.js"></script>
-    <script type="text/javascript" src="js/index.js"></script>
-    <script type="text/javascript" src="js/caleandar.js"></script>
-    <script type="text/javascript">
-    $(document).ready(function() {
-        $(".button-collapse").sideNav();
-        $('select').material_select();
-    });
-    </script>
+    <!-- BG -->
+    <div id="bg"></div>
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
 </body>
 
 </html>
