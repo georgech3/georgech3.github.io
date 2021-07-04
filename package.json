@@ -1,0 +1,27 @@
+{
+  "name": "georgech3.github.io",
+  "version": "1.0.0",
+  "description": "Personal Website of Georgech3",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/georgech3/georgech3.github.io.git"
+  },
+  "keywords": [
+    "Georgech3",
+    "Personal",
+    "Website",
+    "Demo",
+    "Site",
+    "Blog"
+  ],
+  "author": "Georgech3",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/georgech3/georgech3.github.io/issues"
+  },
+  "homepage": "https://github.com/georgech3/georgech3.github.io#readme"
+}
