@@ -3,11 +3,17 @@ import { MenuItems } from "./MenuItems"
 import './NavBar.css'
 
 class NavBar extends Component {
+    state = { clicked: false }
+
+
+
     render() {
         return (
             < nav className="NavbarItems" >
                 <h1 className="navbar-logo">Georgech3's Blog</h1>
-                <div className="menu-icon"></div>
+                <div className="menu-icon" onClick={this.handleClick}>
+                    <i className={this.state.clicked ? 'fas fa-times' : 'fas fa-bars'}></i>
+                </div>
                 <ul>
                     {MenuItems.map((item, index) => {
                         return (
